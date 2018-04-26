@@ -1,4 +1,7 @@
 package spiegelzahlen;
+
+import java.math.BigInteger;
+
 /**
  * Klasse Spiegelzahl: Erzeugt von einer übergebenen Zahl die Spiegelzahl und kann diese auf die Palindromeigenschaft pruefen
  * @author Lukas
@@ -18,19 +21,19 @@ public class Spiegelzahl {
 	 * @return gibt die erzeugte Spiegelzahl als Integer zurueck
 	 */
 	
-	public int erzeugeSpiegelZahl(int zahl) {
-		int ergebnis = 0;
-		StringBuilder s1 = new StringBuilder(Integer.toString(zahl));
+	public BigInteger erzeugeSpiegelZahl(BigInteger zahl) {
+		BigInteger ergebnis = new BigInteger("0");
+		StringBuilder s1 = new StringBuilder(zahl.toString());
 		StringBuilder s2 = new StringBuilder("");
 		
 		s2.append(s1.reverse());
 		
 		try {
-			ergebnis = Integer.parseInt(s2.toString());
+			ergebnis = new BigInteger(s2.toString());
 		}
-		catch(NumberFormatException nfex) {
+		catch(Throwable t) {
 			System.out.println("Konnte Spiegelzahl nicht erzeugen!");
-			nfex.printStackTrace();
+			t.printStackTrace();
 		}
 		return ergebnis;
 	}
@@ -41,10 +44,10 @@ public class Spiegelzahl {
 	 * @return gibt True zurueck falls eine Palindromzahl vorliegt, andernfalls false
 	 */
 	
-	public boolean istPalindromZahl(int zahl) {
-		int spiegelzahl = erzeugeSpiegelZahl(zahl);
+	public boolean istPalindromZahl(BigInteger zahl) {
+		BigInteger spiegelzahl = erzeugeSpiegelZahl(zahl);
 		
-		if(zahl == spiegelzahl) {
+		if(zahl.equals(spiegelzahl)) {
 			return true;
 		}
 		else {
