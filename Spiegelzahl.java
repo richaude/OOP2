@@ -71,7 +71,9 @@ public class Spiegelzahl {
 		for(int i = 0; i<bytes.length; i++) {
 			summe.add(bytes[i]);
 		}
-		
+		if(summe.get(0).equals((byte)0)) {
+			summe.remove(0);
+		}
 		return summe;
 	}
 	
